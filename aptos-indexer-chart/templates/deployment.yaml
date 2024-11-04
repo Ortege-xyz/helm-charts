@@ -1,0 +1,38 @@
+# templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "aptos-indexer.fullname" . }}
+  labels:
+    app: {{ include "aptos-indexer.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "aptos-indexer.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "aptos-indexer.name" . }}
+    spec:
+      containers:
+        - name: aptos-indexer
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POSTGRES_CONNECTION_STRING
+              value: "{{ .Values.postgresConnectionString }}"
+            - name: INDEXER_GRPC_DATA_SERVICE_ADDRESS
+              value: "{{ .Values.indexerGrpcDataServiceAddress }}"
+            - name: HEALTH_CHECK_PORT
+              value: "{{ .Values.healthCheckPort }}"
+          ports:
+            - containerPort: {{ .Values.healthCheckPort }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}

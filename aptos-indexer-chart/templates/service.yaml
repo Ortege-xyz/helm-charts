@@ -1,0 +1,17 @@
+# templates/service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "aptos-indexer.fullname" . }}
+  labels:
+    app: {{ include "aptos-indexer.name" . }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.healthCheckPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ include "aptos-indexer.name" . }}

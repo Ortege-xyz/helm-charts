@@ -1,0 +1,43 @@
+# values.yaml
+
+replicaCount: 1
+
+image:
+  repository: aptos-labs/aptos-indexer-processors
+  tag: latest
+  pullPolicy: IfNotPresent
+
+postgresConnectionString: "postgresql://user:password@host:port/database"
+indexerGrpcDataServiceAddress: "https://fullnode.mainnet.aptoslabs.com"
+healthCheckPort: 8080
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+serviceAccount:
+  create: true
+  name: ""  # Leave empty to use a generated name based on the release name, or specify a custom name
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - /
+  tls: []
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
