@@ -12,12 +12,31 @@ entries:
       artifacthub.io/source-url: https://github.com/Ortege-xyz/helm-charts
     apiVersion: v2
     appVersion: 1.19.0
-    created: "2024-11-05T17:48:11.525416566+10:00"
+    created: "2024-11-11T17:40:51.272980614+10:00"
+    description: A Helm chart for deploying Aptos Indexer (Rust version)
+    digest: 4231d21f085d0f474f1deb4e2178997ac1ef06bd788c060b0e40bafdc755eb96
+    name: aptos-indexer
+    type: application
+    urls:
+    - aptos-indexer-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/description: A Helm chart for deploying the Rust-based Aptos
+        Indexer.
+      artifacthub.io/keywords: blockchain, indexer, aptos, rust, helm-chart
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/maintainers: |-
+        - name: "Ortege Team"
+          email: "justin@ortege.io"
+      artifacthub.io/source-url: https://github.com/Ortege-xyz/helm-charts
+    apiVersion: v2
+    appVersion: 1.19.0
+    created: "2024-11-11T17:40:51.267831254+10:00"
     description: A Helm chart for deploying Aptos Indexer (Rust version)
     digest: adcc1edd143d0f61a3e0ea6b1fefe03995b7aa8e82db3e5317d9b484208783ea
     name: aptos-indexer
     type: application
     urls:
-    - https://ortege-xyz.github.io/helm-charts/aptos-indexer-0.1.0.tgz
+    - aptos-indexer-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-05T17:48:11.520347502+10:00"
+generated: "2024-11-11T17:40:51.25746502+10:00"
