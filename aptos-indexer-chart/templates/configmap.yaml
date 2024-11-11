@@ -1,0 +1,12 @@
+# templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "aptos-indexer.fullname" . }}-config
+  labels:
+    app: {{ include "aptos-indexer.name" . }}
+data:
+  indexer.yaml: |
+    health_check_port: {{ .Values.healthCheckPort }}
+    postgres_connection_string: "{{ .Values.postgresConnectionString }}"
+    indexer_grpc_data_service_address: "{{ .Values.indexerGrpcDataServiceAddress }}"
