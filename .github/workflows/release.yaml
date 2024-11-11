@@ -1,19 +1,31 @@
-name: Release Charts
+name: Update Helm Chart Index
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'charts/**'
 
 jobs:
-  release:
+  update-gh-pages:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
         with:
-          fetch-depth: 0
-      - uses: helm/chart-releaser-action@v1.4.0
+          version: v3.11.0  
+
+      - name: Package Helm Chart
+        run: |
+          helm package ./aptos-indexer-chart
+          helm repo index . --url https://ortege-xyz.github.io/helm-charts/
+
+      - name: Push to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          charts_dir: charts
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
