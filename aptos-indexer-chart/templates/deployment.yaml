@@ -1,5 +1,4 @@
 # templates/deployment.yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,17 +15,26 @@ spec:
       labels:
         app: {{ include "aptos-indexer.name" . }}
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "aptos-indexer.fullname" . }}-config
       containers:
         - name: aptos-indexer
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --config-path
+            - /etc/aptos-indexer/indexer.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /etc/aptos-indexer
           env:
-            - name: POSTGRES_CONNECTION_STRING
-              value: "{{ .Values.postgresConnectionString }}"
-            - name: INDEXER_GRPC_DATA_SERVICE_ADDRESS
-              value: "{{ .Values.indexerGrpcDataServiceAddress }}"
-            - name: HEALTH_CHECK_PORT
-              value: "{{ .Values.healthCheckPort }}"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aptos-indexer-postgres-password
+                  key: POSTGRES_PASSWORD
           ports:
             - containerPort: {{ .Values.healthCheckPort }}
           resources:
