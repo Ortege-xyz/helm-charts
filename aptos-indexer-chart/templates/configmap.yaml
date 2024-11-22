@@ -8,5 +8,6 @@ metadata:
 data:
   indexer.yaml: |
     health_check_port: {{ .Values.healthCheckPort }}
-    postgres_connection_string: "{{ .Values.postgresConnectionString }}"
-    indexer_grpc_data_service_address: "{{ .Values.indexerGrpcDataServiceAddress }}"
+    server_config:
+      postgres_connection_string: "{{ .Values.postgresConnectionString }}"
+      indexer_grpc_data_service_address: "{{ .Values.indexerGrpcDataServiceAddress }}"      
