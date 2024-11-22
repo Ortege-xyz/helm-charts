@@ -9,5 +9,8 @@ data:
   indexer.yaml: |
     health_check_port: {{ .Values.healthCheckPort }}
     server_config:
+      processor_config:
+        type: default_processor
       postgres_connection_string: "{{ .Values.postgresConnectionString }}"
-      indexer_grpc_data_service_address: "{{ .Values.indexerGrpcDataServiceAddress }}"      
+      indexer_grpc_data_service_address: "{{ .Values.indexerGrpcDataServiceAddress }}"
+      auth_token: "{{ .Values.auth_token }}"
