@@ -2,14 +2,5 @@ apiVersion: v2
 name: aptos-indexer
 description: A Helm chart for deploying Aptos Indexer (Rust version)
 type: application
-version: 0.2.0
+version: 0.2.1
 appVersion: "1.19.0"
-
-annotations:
-  artifacthub.io/description: "A Helm chart for deploying the Rust-based Aptos Indexer."
-  artifacthub.io/license: "Apache-2.0" 
-  artifacthub.io/source-url: "https://github.com/Ortege-xyz/helm-charts"  
-  artifacthub.io/keywords: "blockchain, indexer, aptos, rust, helm-chart"
-  artifacthub.io/maintainers: |
-    - name: "Ortege Team"
-      email: "justin@ortege.io"

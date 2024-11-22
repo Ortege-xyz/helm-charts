@@ -3,7 +3,7 @@
 replicaCount: 1
 
 image:
-  repository: aptoslabs/indexer-processor-rust
+  repository: aptos-labs/aptos-indexer-processors
   tag: latest
   pullPolicy: IfNotPresent
 
