@@ -30,11 +30,6 @@ spec:
             - name: config
               mountPath: /etc/aptos-indexer
           env:
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: aptos-indexer-postgres-password
-                  key: POSTGRES_PASSWORD
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key | quote}}
               value: {{ $value | quote }}
