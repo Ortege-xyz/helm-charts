@@ -3,12 +3,12 @@ entries:
   aptos-indexer:
   - apiVersion: v2
     appVersion: 1.19.0
-    created: "2024-11-22T18:20:08.906764002Z"
+    created: "2024-11-22T18:42:05.403734414Z"
     description: A Helm chart for deploying Aptos Indexer (Rust version)
-    digest: 31e5d7a87371bc69f84843b7225c171898f1353e028634077901159e1a1466f3
+    digest: 465fa8c6cce5533a18afa1e66b6e185f285b4ef45727601e78cf2a8693bc4a2a
     name: aptos-indexer
     type: application
     urls:
     - https://ortege-xyz.github.io/helm-charts/aptos-indexer-0.2.2.tgz
     version: 0.2.2
-generated: "2024-11-22T18:20:08.906267316Z"
+generated: "2024-11-22T18:42:05.40321281Z"
