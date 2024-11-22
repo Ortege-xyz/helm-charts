@@ -41,3 +41,19 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
+
+# -- Extra environment variables that will be passed into pods
+extraEnv: {}
+  # KEY: VALUE
+
+# -- Extra environment variables in RAW format that will be passed into pods
+extraEnvRaw: []
+  # Load DB password from other secret (e.g. for zalando operator)
+  # - name: KEY
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: secret
+  #       key: password
+
+# -- This can be a list of templated strings
+envFromSecrets: []
