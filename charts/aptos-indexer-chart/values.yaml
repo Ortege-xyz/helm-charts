@@ -4,7 +4,7 @@ replicaCount: 1
 
 images:
   envsubst:
-    repository: aptoslabs/indexer-processor-rust
+    repository: blockstack/envsubst
     tag: latest
     pullPolicy: IfNotPresent
   aptos:

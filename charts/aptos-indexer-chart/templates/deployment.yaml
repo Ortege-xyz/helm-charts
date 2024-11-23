@@ -23,8 +23,8 @@ spec:
           emptyDir: {}
       initContainers:
         - name: render-config
-          image: "{{ .Values.image.envsubst.repository }}:{{ .Values.image.envsubst.tag }}"
-          imagePullPolicy: {{ .Values.image.envsubst.pullPolicy }}
+          image: "{{ .Values.images.envsubst.repository }}:{{ .Values.images.envsubst.tag }}"
+          imagePullPolicy: {{ .Values.images.envsubst.pullPolicy }}
           command: ["/bin/sh", "-c"]
           args:
             - envsubst < /config-template/index.yaml > /config/index.yaml
@@ -48,8 +48,8 @@ spec:
               mountPath: /config
       containers:
         - name: aptos-indexer
-          image: "{{ .Values.image.aptos.repository }}:{{ .Values.image.aptos.tag }}"
-          imagePullPolicy: {{ .Values.image.aptos.pullPolicy }}
+          image: "{{ .Values.images.aptos.repository }}:{{ .Values.images.aptos.tag }}"
+          imagePullPolicy: {{ .Values.images.aptos.pullPolicy }}
           args:
             - --config-path
             - /config/indexer.yaml
