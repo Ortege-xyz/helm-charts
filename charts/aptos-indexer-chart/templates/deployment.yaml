@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: {{ .Values.images.envsubst.pullPolicy }}
           command: ["/bin/sh", "-c"]
           args:
-            - envsubst < /config-template/index.yaml > /config/index.yaml
+            - envsubst < /config-template/indexer.yaml > /config/indexer.yaml
           env:
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key | quote}}
