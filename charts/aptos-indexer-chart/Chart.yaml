@@ -5,4 +5,4 @@ type: application
 version: 0.2.3
 appVersion: "1.19.0"
 maintainers:
-- name: Ortege
+  - name: Ortege
