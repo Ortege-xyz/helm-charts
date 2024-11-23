@@ -3,6 +3,18 @@ entries:
   aptos-indexer:
   - apiVersion: v2
     appVersion: 1.19.0
+    created: "2024-11-23T16:40:19.237022559Z"
+    description: A Helm chart for deploying Aptos Indexer (Rust version)
+    digest: 57ce036856df54a4b1f92200e6255e3895b11791b86c1fbbb42a2e3064133b28
+    maintainers:
+    - name: Ortege
+    name: aptos-indexer
+    type: application
+    urls:
+    - https://github.com/Ortege-xyz/helm-charts/releases/download/aptos-indexer-0.2.4/aptos-indexer-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: 1.19.0
     created: "2024-11-22T18:42:05.403734414Z"
     description: A Helm chart for deploying Aptos Indexer (Rust version)
     digest: 465fa8c6cce5533a18afa1e66b6e185f285b4ef45727601e78cf2a8693bc4a2a
@@ -11,4 +23,4 @@ entries:
     urls:
     - https://ortege-xyz.github.io/helm-charts/aptos-indexer-0.2.2.tgz
     version: 0.2.2
-generated: "2024-11-22T18:42:05.40321281Z"
+generated: "2024-11-23T16:40:19.237029652Z"
