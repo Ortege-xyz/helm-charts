@@ -16,19 +16,46 @@ spec:
         app: {{ include "aptos-indexer.name" . }}
     spec:
       volumes:
-        - name: config
+        - name: config-template
           configMap:
             name: {{ include "aptos-indexer.fullname" . }}-config
+        - name: config-volume
+          emptyDir: {}
+      initContainers:
+        - name: render-config
+          image: "{{ .Values.images.envsubst.repository }}:{{ .Values.images.envsubst.tag }}"
+          imagePullPolicy: {{ .Values.images.envsubst.pullPolicy }}
+          command: ["/bin/sh", "-c"]
+          args:
+            - envsubst < /config-template/index.yaml > /config/index.yaml
+          env:
+            {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key | quote}}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- if .Values.extraEnvRaw }}
+              {{- toYaml .Values.extraEnvRaw | nindent 12 }}
+            {{- end }}
+          envFrom:
+            {{- range .Values.envFromSecrets }}
+            - secretRef:
+                name: {{ tpl . $ | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: config-template
+              mountPath: /config-template
+            - name: config-volume
+              mountPath: /config
       containers:
         - name: aptos-indexer
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.images.aptos.repository }}:{{ .Values.images.aptos.tag }}"
+          imagePullPolicy: {{ .Values.images.aptos.pullPolicy }}
           args:
             - --config-path
-            - /etc/aptos-indexer/indexer.yaml
+            - /config/indexer.yaml
           volumeMounts:
-            - name: config
-              mountPath: /etc/aptos-indexer
+            - name: config-volume
+              mountPath: /config
           env:
             {{- range $key, $value := .Values.extraEnv }}
             - name: {{ $key | quote}}

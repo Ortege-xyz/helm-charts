@@ -2,10 +2,15 @@
 
 replicaCount: 1
 
-image:
-  repository: aptoslabs/indexer-processor-rust
-  tag: latest
-  pullPolicy: IfNotPresent
+images:
+  envsubst:
+    repository: blockstack/envsubst
+    tag: latest
+    pullPolicy: IfNotPresent
+  aptos:
+    repository: aptoslabs/indexer-processor-rust
+    tag: latest
+    pullPolicy: IfNotPresent
 
 postgresConnectionString: "postgresql://user:password@host:port/database"
 indexerGrpcDataServiceAddress: "https://fullnode.mainnet.aptoslabs.com"
