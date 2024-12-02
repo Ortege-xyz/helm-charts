@@ -17,8 +17,8 @@ spec:
     spec:
       volumes:
         - name: config-template
-          configMap:
-            name: {{ include "aptos-indexer.fullname" . }}-config
+          secret:
+            secretName: {{ include "aptos-indexer.fullname" . }}-config
         - name: config-volume
           emptyDir: {}
       initContainers:
